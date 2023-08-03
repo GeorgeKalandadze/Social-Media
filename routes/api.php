@@ -25,7 +25,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
 
-Route::middleware(['web'])->group(function () {
+Route::group(['middleware' => ['web']], function () {
     Route::get('auth/google',GoogleRedirectController::class);
     Route::get('/auth/google/callback', CallbackGoogleController::class);
 });
