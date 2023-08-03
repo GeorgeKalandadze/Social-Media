@@ -10,10 +10,6 @@ class GoogleRedirectController extends Controller
 {
     public function __invoke()
     {
-        $url = Socialite::driver('google')->redirect()->getTargetUrl();
-            return response()->json([
-                'url' => $url
-        ]);
-//        return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')->redirect();
     }
 }

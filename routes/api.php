@@ -15,12 +15,17 @@ use \App\Http\Controllers\GoogleAuth\CallbackGoogleController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    })->name('user');
 });
 
-Route::get('auth/google',GoogleRedirectController::class);
-Route::get('/auth/google/callback', CallbackGoogleController::class);
 
 
 
+Route::middleware(['web'])->group(function () {
+    Route::get('auth/google',GoogleRedirectController::class);
+    Route::get('/auth/google/callback', CallbackGoogleController::class);
+});
