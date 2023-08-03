@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\GoogleAuth\GoogleRedirectController;
+use \App\Http\Controllers\GoogleAuth\CallbackGoogleController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    })->name('user');
+});
+
+
+
+
+Route::group(['middleware' => ['web']], function () {
+    Route::get('auth/google',GoogleRedirectController::class);
+    Route::get('/auth/google/callback', CallbackGoogleController::class);
 });
