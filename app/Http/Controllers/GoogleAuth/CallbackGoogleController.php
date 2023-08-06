@@ -4,12 +4,13 @@ namespace App\Http\Controllers\GoogleAuth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class CallbackGoogleController extends Controller
 {
-    public function __invoke()
+    public function __invoke(): RedirectResponse
     {
         try {
             $google_user = Socialite::driver('google')->user();
