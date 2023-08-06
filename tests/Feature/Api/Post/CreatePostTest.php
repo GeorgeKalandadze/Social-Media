@@ -2,15 +2,48 @@
 
 namespace Api\Post;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class CreatePostTest extends TestCase
 {
+    use WithFaker, RefreshDatabase;
 
-    public function createPostTest(): void
+    public function test_example(): void
     {
-        $response = $this->get('/');
-        $response->assertStatus(200);
-    }
+        $user = \App\Models\User::factory()->create();
+        Sanctum::actingAs($user);
 
+        $imageFiles = [];
+        for ($i = 0; $i < 5; $i++) {
+            $extension = $this->faker->randomElement(['jpg', 'jpeg', 'png']);
+            $image = UploadedFile::fake()->create("image{$i}.{$extension}");
+            $imageFiles[] = $image;
+        }
+
+        $postData = [
+            'title' => 'Test Post Title',
+            'body' => 'Test Post Body',
+            'sub_category_id' => 1,
+            'images' => $imageFiles,
+        ];
+
+        $response = $this->postJson('/api/post/create', $postData);
+        $response->assertStatus(200)
+            ->assertJsonStructure([
+                'id',
+                'title',
+                'slug',
+                'body',
+                'sub_category_id',
+            ]);
+
+        dump($response);
+    }
 }
+
+

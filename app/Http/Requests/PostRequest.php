@@ -25,7 +25,7 @@ class PostRequest extends FormRequest
             'title' => ['required', 'string'],
             'body' => ['required', 'string', 'max:2000', 'min:5'],
             'slug' => ['nullable'],
-            'subcategory_id' => ['required'],
+            'sub_category_id' => ['required'],
             'images' => ['nullable', 'array', 'max:5'],
             'images.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
 

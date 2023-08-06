@@ -20,18 +20,20 @@ class CreatePostController extends Controller
             $post = Post::create([
                 'title' => $data['title'],
                 'body' => $data['body'],
-                'subcategory_id' => $data['subcategory_id'],
+                'sub_category_id' => $data['sub_category_id'],
                 'user_id' => $request->user()->id
             ]);
-            $images = $data['images'];
-            foreach ($images as $index => $image) {
-                $imageName = $post->id  . time()  . $index . $image->getClientOriginalName();
-                $image->storeAs('public/post_images', $imageName);
 
-                PostImage::create([
-                    'post_id' => $post->id,
-                    'path' => env('APP_URL').Storage::url('post_images/' . $imageName),
-                ]);
+            if (isset($data['images']) && is_array($data['images'])) {
+                foreach ($data['images'] as $index => $image) {
+                    $imageName = $post->id  . time()  . $index . $image->getClientOriginalName();
+                    $image->storeAs('public/post_images', $imageName);
+
+                    PostImage::create([
+                        'post_id' => $post->id,
+                        'path' => env('APP_URL').Storage::url('post_images/' . $imageName),
+                    ]);
+                }
             }
             DB::commit();
             $post->load('postImages');
