@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 
 class CreatePostTest extends TestCase
 {
-    use WithFaker, RefreshDatabase;
+    use WithFaker;
 
     public function test_example(): void
     {
@@ -33,16 +33,18 @@ class CreatePostTest extends TestCase
         ];
 
         $response = $this->postJson('/api/post/create', $postData);
-        $response->assertStatus(200)
-            ->assertJsonStructure([
+        $response->assertStatus(201)
+        ->assertJsonStructure([
+            'data' => [
                 'id',
                 'title',
                 'slug',
                 'body',
-                'sub_category_id',
-            ]);
+                'subcategory'
+            ],
+        ]);
 
-        dump($response);
+        dump($response->json());
     }
 }
 

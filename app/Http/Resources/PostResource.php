@@ -19,7 +19,9 @@ class PostResource extends JsonResource
             'title' => $this->title,
             'slug' => $this->slug,
             'body' => $this->body,
-            'subcategory' => $this->subCategory->name,
+            'subcategory' => $this->whenLoaded('subCategory', function () {
+                return $this->subCategory->name;
+            }),
             'images' => PostImageResource::collection($this->whenLoaded('postImages')),
         ];
     }

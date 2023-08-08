@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\GoogleAuth\GoogleRedirectController;
 use \App\Http\Controllers\GoogleAuth\CallbackGoogleController;
 use \App\Http\Controllers\Post\CreatePostController;
+use \App\Http\Controllers\Post\UpdatePostController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,6 +23,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return $request->user();
     })->name('user');
     Route::post('/post/create', CreatePostController::class);
+    Route::patch('/post/update/{post}', UpdatePostController::class);
 });
 
 

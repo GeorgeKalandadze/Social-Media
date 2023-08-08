@@ -24,7 +24,7 @@ class CreatePostController extends Controller
                 'sub_category_id' => $data['sub_category_id'],
                 'user_id' => $request->user()->id
             ]);
-
+            $post->load('subCategory');
             if (isset($data['images']) && is_array($data['images'])) {
                 foreach ($data['images'] as $index => $image) {
                     $imageName = $post->id  . time()  . $index . $image->getClientOriginalName();
