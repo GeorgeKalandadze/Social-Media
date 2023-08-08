@@ -18,11 +18,12 @@ class CreatePostController extends Controller
         try {
             DB::beginTransaction();
             $data = $request->validated();
+            $user = $request->user();
             $post = Post::create([
                 'title' => $data['title'],
                 'body' => $data['body'],
                 'sub_category_id' => $data['sub_category_id'],
-                'user_id' => $request->user()->id
+                'user_id' => $user->id
             ]);
             $post->load('subCategory');
             if (isset($data['images']) && is_array($data['images'])) {
