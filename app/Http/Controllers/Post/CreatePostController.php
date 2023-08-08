@@ -10,6 +10,7 @@ use App\Models\PostImage;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
 
 class CreatePostController extends Controller
 {
@@ -37,6 +38,7 @@ class CreatePostController extends Controller
                     ]);
                 }
             }
+
             DB::commit();
             $post->load('postImages');
             return new PostResource($post);

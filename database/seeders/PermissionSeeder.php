@@ -16,18 +16,12 @@ class PermissionSeeder extends Seeder
     {
         $permissions = [
             'delete-post',
-            'edit-post'
         ];
 
         foreach ($permissions as $permissionName) {
             Permission::create(['name' => $permissionName]);
         }
-
         $adminRole = Role::create(['name' => 'admin']);
-        $creatorRole = Role::create(['name' => 'creator']);
-
         $adminRole->givePermissionTo('delete-post');
-        $creatorRole->givePermissionTo('delete-post');
-        $creatorRole->givePermissionTo('edit-post');
     }
 }
