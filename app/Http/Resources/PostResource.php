@@ -23,6 +23,7 @@ class PostResource extends JsonResource
                 return $this->subCategory->name;
             }),
             'images' => PostImageResource::collection($this->whenLoaded('postImages')),
+            'user' => new UserResource($this->whenLoaded('user'))
         ];
     }
 }

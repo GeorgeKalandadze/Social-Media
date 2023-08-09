@@ -7,10 +7,8 @@ use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Models\PostImage;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Spatie\Permission\Models\Role;
 
 class CreatePostController extends Controller
 {
@@ -26,21 +24,18 @@ class CreatePostController extends Controller
                 'sub_category_id' => $data['sub_category_id'],
                 'user_id' => $user->id
             ]);
-            $post->load('subCategory');
             if (isset($data['images']) && is_array($data['images'])) {
                 foreach ($data['images'] as $index => $image) {
                     $imageName = $post->id  . time()  . $index . $image->getClientOriginalName();
                     $image->storeAs('public/post_images', $imageName);
-
                     PostImage::create([
                         'post_id' => $post->id,
                         'path' => env('APP_URL').Storage::url('post_images/' . $imageName),
                     ]);
                 }
             }
-
             DB::commit();
-            $post->load('postImages');
+            $post->load('postImages', 'user', 'subCategory');
             return new PostResource($post);
         }catch (\Exception $exception)
         {

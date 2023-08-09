@@ -10,7 +10,7 @@ class GetPostController extends Controller
 {
     public function __invoke(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        $posts = Post::with('subCategory', 'postImages')->get();
+        $posts = Post::with('subCategory', 'postImages', 'user')->get();
         return PostResource::collection($posts);
     }
 }
