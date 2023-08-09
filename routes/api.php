@@ -8,6 +8,7 @@ use \App\Http\Controllers\Post\CreatePostController;
 use \App\Http\Controllers\Post\UpdatePostController;
 use \App\Http\Controllers\Post\DeletePostController;
 use \App\Http\Controllers\GetCategoryController;
+use \App\Http\Controllers\Post\GetPostController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,11 +25,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     })->name('user');
+    Route::get('/posts', GetPostController::class);
     Route::post('/post/create', CreatePostController::class);
     Route::patch('/post/update/{post}', UpdatePostController::class);
     Route::delete('/post/{id}', DeletePostController::class);
     Route::get('/categories',GetCategoryController::class)->name('categories');
-
 });
 
 

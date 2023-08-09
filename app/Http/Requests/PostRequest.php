@@ -28,7 +28,6 @@ class PostRequest extends FormRequest
             'sub_category_id' => ['required'],
             'images' => ['nullable', 'array', 'max:5'],
             'images.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
-
         ];
     }
 }
