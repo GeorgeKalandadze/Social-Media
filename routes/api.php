@@ -27,11 +27,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('user');
     Route::get('/posts', GetPostController::class);
     Route::post('/post/create', CreatePostController::class);
-    Route::patch('/post/update/{post}', UpdatePostController::class);
+    Route::post('/post/update/{id}', UpdatePostController::class);
     Route::delete('/post/{id}', DeletePostController::class);
     Route::get('/categories',GetCategoryController::class)->name('categories');
 });
-
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('auth/google',GoogleRedirectController::class);
