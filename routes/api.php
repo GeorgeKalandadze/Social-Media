@@ -9,6 +9,7 @@ use \App\Http\Controllers\Post\UpdatePostController;
 use \App\Http\Controllers\Post\DeletePostController;
 use \App\Http\Controllers\GetCategoryController;
 use \App\Http\Controllers\Post\GetPostController;
+use \App\Http\Controllers\Post\DeletePostImageController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,6 +30,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/post/create', CreatePostController::class);
     Route::post('/post/update/{id}', UpdatePostController::class);
     Route::delete('/post/{id}', DeletePostController::class);
+    Route::delete('/posts/{postId}/images/{imageId}', DeletePostImageController::class);
     Route::get('/categories',GetCategoryController::class)->name('categories');
 });
 
