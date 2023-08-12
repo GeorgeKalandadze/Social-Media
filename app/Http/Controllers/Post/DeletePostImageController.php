@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,7 +14,7 @@ class DeletePostImageController extends Controller
     {
         $post = Post::find($postId);
         if (!$post) {
-            throw new \InvalidArgumentException('Post not found.');
+            return response()->json(['message' => 'Invalid post ID.'], 400); // Return a 400 response
         }
         if ($post->user_id !== auth()->user()->id) {
             throw new AuthorizationException('You are not authorized to delete images from this post.');

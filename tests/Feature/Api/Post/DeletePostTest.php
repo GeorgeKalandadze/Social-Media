@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Api\Post;
 
 use App\Models\Post;
 use App\Models\User;
@@ -20,7 +20,7 @@ class DeletePostTest extends TestCase
             ->delete("api/post/{$post->id}");
 
         $response->assertStatus(200);
-        $this->assertSoftDeleted('posts', ['id' => $post->id]);
+        $this->assertDatabaseMissing('posts', ['id' => $post->id]);
     }
 
 //    public function testAdminCanDeletePost()

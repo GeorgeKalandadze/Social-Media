@@ -30,7 +30,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/post/create', CreatePostController::class);
     Route::post('/post/update/{id}', UpdatePostController::class);
     Route::delete('/post/{id}', DeletePostController::class);
-    Route::delete('/posts/{postId}/images/{imageId}', DeletePostImageController::class);
+    Route::delete('/posts/{postId}/images/{imageId}', DeletePostImageController::class)->name('delete.post.image');
     Route::get('/categories',GetCategoryController::class)->name('categories');
 });
 
