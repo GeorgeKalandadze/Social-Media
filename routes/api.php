@@ -11,6 +11,7 @@ use \App\Http\Controllers\GetCategoryController;
 use \App\Http\Controllers\Post\GetPostController;
 use \App\Http\Controllers\Post\DeletePostImageController;
 use \App\Http\Controllers\Comment\CreateCommentController;
+use \App\Http\Controllers\UpdateCommentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,6 +35,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/post/update/{id}', UpdatePostController::class);
     Route::delete('/post/{id}', DeletePostController::class);
     Route::delete('/posts/{postId}/images/{imageId}', DeletePostImageController::class)->name('delete.post.image');
+    Route::put('comment/{comment}', UpdateCommentController::class);
     Route::post('/comment/create', CreateCommentController::class);
     Route::get('/categories',GetCategoryController::class)->name('categories');
 });

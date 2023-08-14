@@ -1,10 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Api\Comment;
 
 use App\Models\Post;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
