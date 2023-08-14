@@ -14,7 +14,7 @@ class DeletePostImageController extends Controller
     {
         $post = Post::find($postId);
         if (!$post) {
-            return response()->json(['message' => 'Invalid post ID.'], 400); // Return a 400 response
+            return response()->json(['message' => 'Invalid post ID.'], 400);
         }
         if ($post->user_id !== auth()->user()->id) {
             throw new AuthorizationException('You are not authorized to delete images from this post.');

@@ -21,11 +21,13 @@ use \App\Http\Controllers\Post\DeletePostImageController;
 |
 */
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/user', function (Request $request) {
+    $user = $request->user();
+    $user['roles'] = $user->getRoleNames()->toArray();
+    return $user;
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    })->name('user');
     Route::get('/posts', GetPostController::class);
     Route::post('/post/create', CreatePostController::class);
     Route::post('/post/update/{id}', UpdatePostController::class);

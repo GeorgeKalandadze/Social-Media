@@ -7,8 +7,6 @@ use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Models\PostImage;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Auth\Access\AuthorizationException;
 
@@ -21,6 +19,12 @@ class UpdatePostController extends Controller
             throw new AuthorizationException('You are not authorized to update this post.');
         }
         $data = $request->validated();
+
+        $post->update([
+            'title' => $data['title'],
+            'body' => $data['body'],
+            'sub_category_id' => $data['sub_category_id'],
+        ]);
 
         $currentImageCount = $post->postImages->count();
         $allowedImageCount = 5;
