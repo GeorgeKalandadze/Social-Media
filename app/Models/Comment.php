@@ -37,4 +37,10 @@ class Comment extends Model
     {
         return $this->belongsTo(Comment::class, 'parent_comment_id');
     }
+
+
+    public function childCommentsRecursive()
+    {
+        return $this->hasMany(Comment::class, 'parent_comment_id')->with('childCommentsRecursive');
+    }
 }
