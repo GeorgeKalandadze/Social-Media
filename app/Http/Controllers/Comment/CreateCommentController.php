@@ -14,11 +14,11 @@ class CreateCommentController extends Controller
         $user = $request->user();
         $comment = Comment::create([
             'user_id' => $user->id,
-            'post_id' => $data->post_id,
-            'body' => $data->body,
-            'parent_comment_id' => $data->parent_comment_id,
+            'post_id' => $data['post_id'],
+            'body' => $data['body'],
+            'parent_comment_id' => $data['parent_comment_id'],
         ]);
 
-        return response()->json($comment);
+        return response()->json($comment, 201);
     }
 }

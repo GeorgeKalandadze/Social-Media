@@ -44,7 +44,6 @@ class CreatePostTest extends TestCase
             ],
         ]);
 
-        dump($response->json());
     }
 }
 
