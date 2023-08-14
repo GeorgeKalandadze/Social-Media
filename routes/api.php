@@ -1,17 +1,18 @@
 <?php
 
+use App\Http\Controllers\Comment\CreateCommentController;
+use App\Http\Controllers\Comment\UpdateCommentController;
+use App\Http\Controllers\GetCategoryController;
+use App\Http\Controllers\GoogleAuth\CallbackGoogleController;
+use App\Http\Controllers\GoogleAuth\GoogleRedirectController;
+use App\Http\Controllers\Post\CreatePostController;
+use App\Http\Controllers\Post\DeletePostController;
+use App\Http\Controllers\Post\DeletePostImageController;
+use App\Http\Controllers\Post\GetPostController;
+use App\Http\Controllers\Post\UpdatePostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\GoogleAuth\GoogleRedirectController;
-use \App\Http\Controllers\GoogleAuth\CallbackGoogleController;
-use \App\Http\Controllers\Post\CreatePostController;
-use \App\Http\Controllers\Post\UpdatePostController;
-use \App\Http\Controllers\Post\DeletePostController;
-use \App\Http\Controllers\GetCategoryController;
-use \App\Http\Controllers\Post\GetPostController;
-use \App\Http\Controllers\Post\DeletePostImageController;
-use \App\Http\Controllers\Comment\CreateCommentController;
-use \App\Http\Controllers\UpdateCommentController;
+use \App\Http\Controllers\Comment\DeleteCommentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,6 +37,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('/post/{id}', DeletePostController::class);
     Route::delete('/posts/{postId}/images/{imageId}', DeletePostImageController::class)->name('delete.post.image');
     Route::put('comment/{comment}', UpdateCommentController::class);
+    Route::delete('/comment/{id}', DeleteCommentController::class);
     Route::post('/comment/create', CreateCommentController::class);
     Route::get('/categories',GetCategoryController::class)->name('categories');
 });

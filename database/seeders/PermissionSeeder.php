@@ -16,12 +16,15 @@ class PermissionSeeder extends Seeder
     {
         $permissions = [
             'delete-post',
+            'delete-comment'
         ];
 
         foreach ($permissions as $permissionName) {
             Permission::create(['name' => $permissionName]);
         }
         $adminRole = Role::create(['name' => 'admin']);
-        $adminRole->givePermissionTo('delete-post');
+        foreach ($permissions as $permissionName) {
+            $adminRole->givePermissionTo($permissionName);
+        }
     }
 }
