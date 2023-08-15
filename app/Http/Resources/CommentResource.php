@@ -17,7 +17,9 @@ class CommentResource extends JsonResource
         return [
             'id' => $this->id,
             'body' => $this->body,
-            'user_name' => $this->user->name,
+            'user' => new UserResource($this->whenLoaded('user')),
+            'created_at' => $this->created_at,
+            'parent_comment_id' => $this->parent_comment_id,
             'replies' => CommentResource::collection($this->whenLoaded('childCommentsRecursive')),
         ];
     }

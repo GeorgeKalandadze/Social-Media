@@ -1,11 +1,10 @@
 <?php
 
-namespace Tests\Feature;
+namespace Api\Comment;
 
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 

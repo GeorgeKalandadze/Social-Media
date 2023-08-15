@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Comment\CreateCommentController;
+use App\Http\Controllers\Comment\DeleteCommentController;
+use App\Http\Controllers\Comment\GetCommentController;
 use App\Http\Controllers\Comment\UpdateCommentController;
 use App\Http\Controllers\GetCategoryController;
 use App\Http\Controllers\GoogleAuth\CallbackGoogleController;
@@ -12,8 +14,7 @@ use App\Http\Controllers\Post\GetPostController;
 use App\Http\Controllers\Post\UpdatePostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\Comment\DeleteCommentController;
-use \App\Http\Controllers\GetCommentController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
