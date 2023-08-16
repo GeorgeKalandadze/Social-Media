@@ -14,7 +14,7 @@ use App\Http\Controllers\Post\GetPostController;
 use App\Http\Controllers\Post\UpdatePostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\Post\LikePostController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -37,6 +37,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/post/create', CreatePostController::class);
     Route::post('/post/update/{id}', UpdatePostController::class);
     Route::delete('/post/{id}', DeletePostController::class);
+    Route::post('/post/upvote/{post_id}', LikePostController::class);
     Route::delete('/posts/{postId}/images/{imageId}', DeletePostImageController::class)->name('delete.post.image');
     Route::get('/comment/{post}', GetCommentController::class);
     Route::put('comment/{comment}', UpdateCommentController::class);

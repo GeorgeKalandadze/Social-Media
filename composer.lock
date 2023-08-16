@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "897124bbefc502da42e3d81ba50f01b5",
+    "content-hash": "682b07c28eb3a4355159495aea4b43dc",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2567,6 +2567,75 @@
                 }
             ],
             "time": "2023-02-08T01:06:31+00:00"
+        },
+        {
+            "name": "overtrue/laravel-vote",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/laravel-vote.git",
+                "reference": "d3dc02d785d44bf6cbdfc2fc34c1346518e7fb51"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/laravel-vote/zipball/d3dc02d785d44bf6cbdfc2fc34c1346518e7fb51",
+                "reference": "d3dc02d785d44bf6cbdfc2fc34c1346518e7fb51",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^9.0|^10.0"
+            },
+            "require-dev": {
+                "brainmaestro/composer-git-hooks": "dev-master",
+                "friendsofphp/php-cs-fixer": "^3.6",
+                "laravel/pint": "^1.5",
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^8.0",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Overtrue\\LaravelVote\\VoteServiceProvider"
+                    ]
+                },
+                "hooks": {
+                    "pre-commit": [
+                        "composer fix-style"
+                    ],
+                    "pre-push": [
+                        "composer test"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\LaravelVote\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "anzhengchao@gmail.com"
+                }
+            ],
+            "description": "User Vote features for Laravel Application.",
+            "support": {
+                "issues": "https://github.com/overtrue/laravel-vote/issues",
+                "source": "https://github.com/overtrue/laravel-vote/tree/3.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/overtrue",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-02-16T03:07:37+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
