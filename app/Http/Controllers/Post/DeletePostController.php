@@ -29,5 +29,4 @@ class DeletePostController extends Controller
             return "You don't have permission to delete this post";
         }
     }
-
 }

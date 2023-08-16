@@ -15,6 +15,7 @@ class PostResource extends JsonResource
             'title' => $this->title,
             'slug' => $this->slug,
             'body' => $this->body,
+            'created_at' => $this->created_at,
             'subcategory' => [
                 'id' => $this->whenLoaded('subCategory', function () {
                     return $this->subCategory->id;

@@ -17,7 +17,7 @@ class Comment extends Model
         'body',
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -36,5 +36,11 @@ class Comment extends Model
     public function parentComment()
     {
         return $this->belongsTo(Comment::class, 'parent_comment_id');
+    }
+
+
+    public function childCommentsRecursive()
+    {
+        return $this->hasMany(Comment::class, 'parent_comment_id')->with('childCommentsRecursive');
     }
 }
