@@ -20,6 +20,7 @@ class CommentResource extends JsonResource
             'user' => new UserResource($this->whenLoaded('user')),
             'created_at' => $this->created_at,
             'parent_comment_id' => $this->parent_comment_id,
+            'post_id' => $this->post_id,
             'replies' => CommentResource::collection($this->whenLoaded('childCommentsRecursive')),
         ];
     }

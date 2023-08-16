@@ -31,7 +31,7 @@ class GetCommentTest extends TestCase
                     '*' => [
                         'id',
                         'body',
-                        'user_name',
+                        'user',
                         'replies' => [
                             '*' => [
                                 'id',

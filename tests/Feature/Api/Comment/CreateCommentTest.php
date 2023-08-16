@@ -25,10 +25,11 @@ class CreateCommentTest extends TestCase
         $response = $this->postJson('/api/comment/create', $commentData);
         $response->assertStatus(201)
             ->assertJsonStructure([
-                'user_id',
-                'post_id',
-                'body',
-                'parent_comment_id'
+                'data' => [
+                    'user',
+                    'post_id',
+                    'body',
+                    'parent_comment_id']
             ]);
 
         dump($response->json());
