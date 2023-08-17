@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Post\LikePostController;
 use \App\Http\Controllers\Comment\LikeCommentController;
 use \App\Http\Controllers\ToggleFavoritePostController;
+use \App\Http\Controllers\GetFavoritePostController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,6 +38,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/user', function (Request 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/posts', GetPostController::class);
+    Route::get('/favorites', GetFavoritePostController::class);
     Route::post('/posts/{post}/favorite', ToggleFavoritePostController::class);
     Route::post('/post/create', CreatePostController::class);
     Route::post('/post/update/{id}', UpdatePostController::class);
