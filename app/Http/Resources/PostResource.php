@@ -29,6 +29,7 @@ class PostResource extends JsonResource
             'user' => new UserResource($this->whenLoaded('user')),
             'votes' => (int)$this->totalVotes,
             'has_voted' => $user ? $user->attachVoteStatus($this->resource)['has_voted'] : false,
+            'has_favorited' => $user ? $user->favorites()->where('post_id', $this->id)->exists() : false,
         ];
     }
 }

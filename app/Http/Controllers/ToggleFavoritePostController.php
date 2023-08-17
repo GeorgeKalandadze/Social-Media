@@ -14,10 +14,10 @@ class ToggleFavoritePostController extends Controller
 
         if ($user->favorites()->where('post_id', $post->id)->exists()) {
             $user->favorites()->detach($post);
-            return response()->json(['message' => 'Post removed from favorites']);
+            return "favorited";
         } else {
             $user->favorites()->attach($post);
-            return response()->json(['message' => 'Post added to favorites']);
+            return "unfavorited";
         }
     }
 

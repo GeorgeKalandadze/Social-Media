@@ -10,9 +10,7 @@ class GetFavoritePostController extends Controller
     public function __invoke(Request $request)
     {
         $user = Auth::user();
-
-        $favorites = $user->favorites()->with('user')->get();
-
+        $favorites = $user->favorites()->with('user','postImages')->get();
         return response()->json(['favorites' => $favorites]);
     }
 }
