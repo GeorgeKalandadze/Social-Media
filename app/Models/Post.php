@@ -10,17 +10,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Overtrue\LaravelVote\Traits\Votable;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Votable;
 
     protected $fillable = [
         'title',
         'body',
         'slug',
         'user_id',
-        'sub_category_id'
+        'sub_category_id',
+//        'attachment',
+        'votes',
     ];
 
     public function comments(): HasMany
