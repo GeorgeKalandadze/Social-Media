@@ -10,6 +10,7 @@ class PostResource extends JsonResource
 
     public function toArray(Request $request): array
     {
+        $user = auth()->user();
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -25,7 +26,9 @@ class PostResource extends JsonResource
                 }),
             ],
             'images' => PostImageResource::collection($this->whenLoaded('postImages')),
-            'user' => new UserResource($this->whenLoaded('user'))
+            'user' => new UserResource($this->whenLoaded('user')),
+            'votes' => (int)$this->totalVotes,
+            'has_voted' => $user ? $user->attachVoteStatus($this->resource)['has_voted'] : false,
         ];
     }
 }

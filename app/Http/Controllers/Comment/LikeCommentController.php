@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Post;
-use App\Models\Post;
+namespace App\Http\Controllers\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 
-class LikePostController extends Controller
+class LikeCommentController extends Controller
 {
-    public function __invoke(Request $request, $postId)
+    public function __invoke(Request $request, $id)
     {
-        $post = Post::find($postId);
+        $post = Comment::find($id);
         $voteData = $request->user()->attachVoteStatus($post);
 
         if (!$voteData->has_upvoted) {

@@ -14,6 +14,7 @@ class CommentResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $user = auth()->user();
         return [
             'id' => $this->id,
             'body' => $this->body,
@@ -22,6 +23,8 @@ class CommentResource extends JsonResource
             'parent_comment_id' => $this->parent_comment_id,
             'post_id' => $this->post_id,
             'replies' => CommentResource::collection($this->whenLoaded('childCommentsRecursive')),
+            'votes' => (int)$this->totalVotes,
+            'has_voted' => $user ? $user->attachVoteStatus($this->resource)['has_voted'] : false,
         ];
     }
 }
