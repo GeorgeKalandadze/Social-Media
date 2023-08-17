@@ -40,7 +40,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('/post/{id}', DeletePostController::class);
     Route::post('/post/upvote/{post_id}', LikePostController::class);
     Route::delete('/posts/{postId}/images/{imageId}', DeletePostImageController::class)->name('delete.post.image');
-    Route::post('/comment/upvote/{post_id}', LikeCommentController::class);
+    Route::post('/comment/upvote/{comment_id}', LikeCommentController::class);
     Route::get('/comment/{post}', GetCommentController::class);
     Route::put('comment/{comment}', UpdateCommentController::class);
     Route::delete('/comment/{id}', DeleteCommentController::class);
