@@ -3,6 +3,7 @@
 use App\Http\Controllers\Comment\CreateCommentController;
 use App\Http\Controllers\Comment\DeleteCommentController;
 use App\Http\Controllers\Comment\GetCommentController;
+use App\Http\Controllers\Comment\LikeCommentController;
 use App\Http\Controllers\Comment\UpdateCommentController;
 use App\Http\Controllers\GetCategoryController;
 use App\Http\Controllers\GoogleAuth\CallbackGoogleController;
@@ -10,14 +11,13 @@ use App\Http\Controllers\GoogleAuth\GoogleRedirectController;
 use App\Http\Controllers\Post\CreatePostController;
 use App\Http\Controllers\Post\DeletePostController;
 use App\Http\Controllers\Post\DeletePostImageController;
+use App\Http\Controllers\Post\GetFavoritePostController;
 use App\Http\Controllers\Post\GetPostController;
+use App\Http\Controllers\Post\LikePostController;
+use App\Http\Controllers\Post\ToggleFavoritePostController;
 use App\Http\Controllers\Post\UpdatePostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\Post\LikePostController;
-use \App\Http\Controllers\Comment\LikeCommentController;
-use \App\Http\Controllers\ToggleFavoritePostController;
-use \App\Http\Controllers\GetFavoritePostController;
 
 /*
 |--------------------------------------------------------------------------
