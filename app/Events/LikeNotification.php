@@ -18,16 +18,14 @@ class LikeNotification implements ShouldBroadcast
 
     public $post;
     public $user;
-    public $status;
 
     /**
      * Create a new event instance.
      */
-    public function __construct(Post $post, User $user, $status)
+    public function __construct(Post $post, User $user)
     {
         $this->post = $post;
         $this->user = $user;
-        $this->status = $status;
     }
 
     /**
@@ -47,7 +45,6 @@ class LikeNotification implements ShouldBroadcast
         return [
             'message' => "{$this->user->name} liked your post",
             'post_id' => $this->post->id,
-            'status' => $this->status,
         ];
     }
 }

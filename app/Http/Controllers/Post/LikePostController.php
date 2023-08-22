@@ -16,12 +16,10 @@ class LikePostController extends Controller
         $user = Auth::user();
         if (!$voteData->has_upvoted) {
             $request->user()->upvote($post);
-            event(new LikeNotification($post, $user, 'unfavorited'));
+            event(new LikeNotification($post, $user));
             return "upVoted";
         }
-
         $request->user()->cancelVote($post);
-        event(new LikeNotification($post, $user, 'favorited'));
         return "downVoted";
     }
 }
