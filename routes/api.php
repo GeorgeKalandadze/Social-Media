@@ -18,7 +18,7 @@ use App\Http\Controllers\Post\ToggleFavoritePostController;
 use App\Http\Controllers\Post\UpdatePostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use \Illuminate\Support\Facades\Broadcast;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,6 +35,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/user', function (Request 
     $user['roles'] = $user->getRoleNames()->toArray();
     return $user;
 });
+
+Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/posts', GetPostController::class);

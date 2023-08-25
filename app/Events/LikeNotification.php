@@ -33,11 +33,9 @@ class LikeNotification implements ShouldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(): array
+    public function broadcastOn(): Channel|array
     {
-        return [
-            new PrivateChannel('like-channel'),
-        ];
+        return new Channel('like-channel.'.$this->post->id);
     }
 
     public function broadcastWith(): array
@@ -46,5 +44,10 @@ class LikeNotification implements ShouldBroadcast
             'message' => "{$this->user->name} liked your post",
             'post_id' => $this->post->id,
         ];
+    }
+
+    public function broadcastAs(): string
+    {
+        return 'new-like';
     }
 }
