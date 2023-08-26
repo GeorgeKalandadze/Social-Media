@@ -18,5 +18,5 @@ use Illuminate\Support\Facades\Broadcast;
 //});
 
 Broadcast::channel('like-channel.{postId}', function ($user, $postId) {
-    return $user->id === \App\Models\Post::find($postId)->user_id;
+    return true;
 });

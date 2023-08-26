@@ -35,7 +35,7 @@ class LikeNotification implements ShouldBroadcast
      */
     public function broadcastOn(): Channel|array
     {
-        return new Channel('like-channel.'.$this->post->id);
+        return new PrivateChannel('like-channel.'.$this->post->id);
     }
 
     public function broadcastWith(): array
