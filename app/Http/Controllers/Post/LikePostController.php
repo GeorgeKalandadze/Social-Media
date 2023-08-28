@@ -22,4 +22,6 @@ class LikePostController extends Controller
         $request->user()->cancelVote($post);
         return "downVoted";
     }
+
+
 }

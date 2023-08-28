@@ -41,7 +41,8 @@ class LikeNotification implements ShouldBroadcast
     public function broadcastWith(): array
     {
         return [
-            'message' => "{$this->user->name} liked your post",
+            'message' => "liked your post",
+            'message_author' => $this->user->name,
             'post_id' => $this->post->id,
         ];
     }
