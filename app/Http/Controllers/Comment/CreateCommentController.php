@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Comment;
 
+use App\Events\CommentEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
 use App\Http\Resources\CommentResource;
@@ -21,6 +22,7 @@ class CreateCommentController extends Controller
             'parent_comment_id' => $data['parent_comment_id'],
         ]);
         $comment->load('user');
+        event(new CommentEvent($comment, $user));
         return new CommentResource($comment);
     }
 }

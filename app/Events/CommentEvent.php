@@ -13,7 +13,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class CommentEvent
+class CommentEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -37,7 +37,7 @@ class CommentEvent
      */
     public function broadcastOn(): Channel|array
     {
-        return new PrivateChannel('comment-channel.'.$this->comment->id);
+        return new PrivateChannel('comment-channel.'.$this->comment->post->id);
     }
 
     public function broadcastWith(): array
@@ -45,7 +45,7 @@ class CommentEvent
         return [
             'message' => "write comment by",
             'message_author' => $this->user->name,
-            'post_id' => $this->comment->id,
+            'comment_id' => $this->comment->id,
         ];
     }
 
