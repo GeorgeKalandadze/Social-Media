@@ -20,7 +20,5 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('like-channel.{postId}', function (User $user, $postId) {
-    $post = Post::findOrNew($postId);
-    return (int) auth()->user()->id === (int) Post::findOrNew($postId)->user_id;
-//    return true;
+    return (int) $user->id === (int) Post::findOrNew($postId)->user_id;
 });
