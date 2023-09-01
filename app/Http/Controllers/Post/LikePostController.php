@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Post;
 use App\Events\LikeNotification;
+use App\Models\Notification;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,6 +18,13 @@ class LikePostController extends Controller
         if (!$voteData->has_upvoted) {
             $request->user()->upvote($post);
             event(new LikeNotification($post, $user));
+            Notification::create([
+                'owner_id' => $post->user_id,
+                'notifiable_type' => get_class($post),
+                'notifiable_id' => $post->id,
+                'author_id' => $user->id,
+                'is_read' => false,
+            ]);
             return "upVoted";
         }
         $request->user()->cancelVote($post);

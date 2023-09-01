@@ -27,18 +27,6 @@ class LikeNotification implements ShouldBroadcast
         $this->post = $post;
         $this->user = $user;
 
-        $this->saveNotification();
-    }
-
-
-    private function saveNotification()
-    {
-        $this->user->notifications()->create([
-            'notifiable_type' => get_class($this->post),
-            'notifiable_id' => $this->post->id,
-            'author_id' => $this->user->id,
-            'is_read' => false,
-        ]);
     }
 
     /**
@@ -55,8 +43,9 @@ class LikeNotification implements ShouldBroadcast
     {
         return [
             'message' => "liked your post",
-            'message_author' => $this->user->name,
-            'post_id' => $this->post->id,
+            'author_name' => $this->user->name,
+            'is_read' => false,
+//            'post_id' => $this->post->id,
         ];
     }
 

@@ -19,8 +19,8 @@ class NotificationResource extends JsonResource
         $author = User::find($this->author_id);
 
         return [
-            'owner_name' => $owner ? $owner->name : 'Unknown',
-            'author_name' => $author ? $author->name : 'Unknown', 
+//            'owner_name' => $owner ? $owner->name : 'Unknown',
+            'author_name' => $author ? $author->name : 'Unknown',
             'is_read' => $this->is_read,
             'message' => "liked your post"
         ];
