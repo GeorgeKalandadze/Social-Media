@@ -43,9 +43,10 @@ class CommentEvent implements ShouldBroadcast
     public function broadcastWith(): array
     {
         return [
-            'message' => "write comment by",
+            'message' => "writes comment on your post",
             'message_author' => $this->user->name,
             'comment_id' => $this->comment->id,
+
         ];
     }
 
