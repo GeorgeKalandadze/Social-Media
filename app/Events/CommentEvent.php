@@ -28,6 +28,18 @@ class CommentEvent implements ShouldBroadcast
     {
         $this->comment = $comment;
         $this->user = $user;
+        $this->saveNotification();
+    }
+
+
+    private function saveNotification()
+    {
+        $this->user->notifications()->create([
+            'notifiable_type' => get_class($this->comment->post),
+            'notifiable_id' => $this->comment->post->id,
+            'author_id' => $this->user->id,
+            'is_read' => false,
+        ]);
     }
 
     /**

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('owner_id');
             $table->morphs('notifiable');
 //            $table->text('message');
-            $table->unsignedBigInteger('author_id');
+            $table->string('author_id');
             $table->boolean('is_read')->default(false);
             $table->timestamps();
         });
