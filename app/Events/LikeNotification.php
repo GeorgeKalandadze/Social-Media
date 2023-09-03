@@ -48,8 +48,6 @@ class LikeNotification implements ShouldBroadcast
             'message' => "liked your post",
             'author_name' => $this->user->name,
             'is_read' => false,
-//            'post_id' => $this->post->id,
-
         ];
     }
 

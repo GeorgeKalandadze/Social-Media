@@ -22,25 +22,15 @@ class CommentEvent implements ShouldBroadcast
      */
     public $comment;
     public $user;
+    public $notification_id;
 
-
-    public function __construct(Comment $comment, User $user)
+    public function __construct(Comment $comment, User $user, $notification_id)
     {
         $this->comment = $comment;
         $this->user = $user;
-        $this->saveNotification();
+        $this->notification_id = $notification_id;
     }
 
-
-    private function saveNotification()
-    {
-        $this->user->notifications()->create([
-            'notifiable_type' => get_class($this->comment->post),
-            'notifiable_id' => $this->comment->post->id,
-            'author_id' => $this->user->id,
-            'is_read' => false,
-        ]);
-    }
 
     /**
      * Get the channels the event should broadcast on.
@@ -55,9 +45,10 @@ class CommentEvent implements ShouldBroadcast
     public function broadcastWith(): array
     {
         return [
+            'id' => $this->notification_id,
             'message' => "writes comment on your post",
-            'message_author' => $this->user->name,
-            'comment_id' => $this->comment->id,
+            'author_name' => $this->user->name,
+            'is_read' => false,
 
         ];
     }
