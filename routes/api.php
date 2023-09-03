@@ -18,7 +18,10 @@ use App\Http\Controllers\Post\ToggleFavoritePostController;
 use App\Http\Controllers\Post\UpdatePostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use \Illuminate\Support\Facades\Broadcast;
+use \App\Http\Controllers\GetNotificationController;
+use \App\Http\Controllers\MarkAsReadController;
+use \App\Http\Controllers\MarkAsAllReadController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,7 +39,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/user', function (Request 
     return $user;
 });
 
+Broadcast::routes(['middleware' => ['auth:sanctum']]);
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/notifications', GetNotificationController::class);
+    Route::put('/notifications/{notification}', MarkAsReadController::class);
+    Route::patch('/notifications/markAllAsRead', MarkAsAllReadController::class);
+
     Route::get('/posts', GetPostController::class);
     Route::get('/favorites', GetFavoritePostController::class);
     Route::post('/posts/{post}/favorite', ToggleFavoritePostController::class);
@@ -47,7 +56,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('/posts/{postId}/images/{imageId}', DeletePostImageController::class)->name('delete.post.image');
     Route::post('/comment/upvote/{comment_id}', LikeCommentController::class);
     Route::get('/comment/{post}', GetCommentController::class);
-    Route::put('comment/{comment}', UpdateCommentController::class);
+    Route::put('/comment/{comment}', UpdateCommentController::class);
     Route::delete('/comment/{id}', DeleteCommentController::class);
     Route::post('/comment/create', CreateCommentController::class);
     Route::get('/categories',GetCategoryController::class)->name('categories');

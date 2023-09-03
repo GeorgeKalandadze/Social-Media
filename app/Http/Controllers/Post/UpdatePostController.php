@@ -33,7 +33,6 @@ class UpdatePostController extends Controller
             if ($currentImageCount + count($data['images']) > $allowedImageCount) {
                 throw new \InvalidArgumentException('This post can only have up to '.$allowedImageCount.' images.');
             }
-
             foreach ($data['images'] as $index => $image) {
                 $imageName = $post->id . time() . $index . $image->getClientOriginalName();
                 $image->storeAs('public/post_images', $imageName);
