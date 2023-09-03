@@ -9,8 +9,10 @@ class MarkAsAllReadController extends Controller
     public function __invoke(Request $request)
     {
         $user = $request->user();
-        $user->unreadNotifications->each(function ($notification) {
-            $notification->update(['is_read' => true]);
+        $user->notifications->each(function ($notification) {
+            if (!$notification->is_read) {
+                $notification->update(['is_read' => true]);
+            }
         });
 
         return response()->json(['message' => 'All notifications marked as read']);
