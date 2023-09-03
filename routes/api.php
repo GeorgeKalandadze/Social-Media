@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \Illuminate\Support\Facades\Broadcast;
 use \App\Http\Controllers\GetNotificationController;
+use \App\Http\Controllers\MarkAsReadController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,6 +42,7 @@ Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/notifications', GetNotificationController::class);
+    Route::put('/notifications/{notification}', MarkAsReadController::class);
     Route::get('/posts', GetPostController::class);
     Route::get('/favorites', GetFavoritePostController::class);
     Route::post('/posts/{post}/favorite', ToggleFavoritePostController::class);

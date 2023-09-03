@@ -20,8 +20,9 @@ class NotificationResource extends JsonResource
 
         return [
 //            'owner_name' => $owner ? $owner->name : 'Unknown',
+            'id' => $this->id,
             'author_name' => $author ? $author->name : 'Unknown',
-            'is_read' => $this->is_read,
+            'is_read' => $this->is_read ? true : false,
             'message' => "liked your post"
         ];
     }

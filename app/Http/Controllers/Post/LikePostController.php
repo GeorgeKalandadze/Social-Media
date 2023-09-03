@@ -17,19 +17,19 @@ class LikePostController extends Controller
         $user = Auth::user();
         if (!$voteData->has_upvoted) {
             $request->user()->upvote($post);
-            event(new LikeNotification($post, $user));
-            Notification::create([
+           $notification = Notification::create([
                 'owner_id' => $post->user_id,
                 'notifiable_type' => get_class($post),
                 'notifiable_id' => $post->id,
                 'author_id' => $user->id,
                 'is_read' => false,
             ]);
+            $notification_id = $notification->id;
+            event(new LikeNotification($post, $user, $notification_id));
             return "upVoted";
+
         }
         $request->user()->cancelVote($post);
         return "downVoted";
     }
-
-
 }
