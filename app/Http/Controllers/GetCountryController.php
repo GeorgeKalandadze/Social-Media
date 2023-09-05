@@ -10,7 +10,7 @@ class GetCountryController extends Controller
 {
     public function __invoke(): JsonResponse
     {
-        $countries = Country::all()->get();
+        $countries = Country::all();
         return response()->json($countries);
     }
 }

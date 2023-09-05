@@ -45,7 +45,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/user', function (Request 
 Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    
+
     Route::get('/countries', GetCountryController::class);
 
     Route::get('/notifications', GetNotificationController::class);
