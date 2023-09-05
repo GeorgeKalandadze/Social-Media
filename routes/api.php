@@ -24,6 +24,7 @@ use \App\Http\Controllers\MarkAsReadController;
 use \App\Http\Controllers\MarkAsAllReadController;
 use \App\Http\Controllers\UpdateUserProfile;
 use \App\Http\Controllers\UserInformationController;
+use \App\Http\Controllers\GetCountryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -44,6 +45,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/user', function (Request 
 Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    
+    Route::get('/countries', GetCountryController::class);
+
     Route::get('/notifications', GetNotificationController::class);
     Route::put('/notifications/{notification}', MarkAsReadController::class);
     Route::patch('/notifications/markAllAsRead', MarkAsAllReadController::class);
