@@ -66,7 +66,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('/comment/{id}', DeleteCommentController::class);
     Route::post('/comment/create', CreateCommentController::class);
     Route::get('/categories',GetCategoryController::class)->name('categories');
-    Route::put('/update-profile', UpdateUserProfileController::class);
+    Route::post('/update-profile', UpdateUserProfileController::class);
     Route::get('/user/{user}', UserInformationController::class);
 });
 
