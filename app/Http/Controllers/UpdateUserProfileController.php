@@ -41,20 +41,20 @@ class UpdateUserProfileController extends Controller
         // Process the validated data
         $data = $validator->validated();
 
-        if ($request->hasFile('bg_img')) {
+        if (isset($request->bg_img)) {
             // Handle background image upload and storage
             $bgImage = $request->file('bg_img');
             $bgImageName = time() . $bgImage->getClientOriginalName();
             $bgImage->storeAs('bg_images', $bgImageName);
-            $data['bg_img'] = env('APP_URL') . Storage::url('bg_images/' . $bgImageName);
+            $data['bg_image'] = env('APP_URL') . Storage::url('bg_images/' . $bgImageName);
         }
 
-        if ($request->hasFile('profile_img')) {
+        if (isset($request->profile_img)) {
             // Handle profile image upload and storage
             $profileImage = $request->file('profile_img');
             $imageName = time() . $profileImage->getClientOriginalName();
             $profileImage->storeAs('profile_images', $imageName);
-            $data['profile_img'] = env('APP_URL') . Storage::url('profile_images/' . $imageName);
+            $data['profile_image'] = env('APP_URL') . Storage::url('profile_images/' . $imageName);
         }
 
         // Update the user's profile
