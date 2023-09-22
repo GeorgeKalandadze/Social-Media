@@ -22,6 +22,9 @@ use \Illuminate\Support\Facades\Broadcast;
 use \App\Http\Controllers\GetNotificationController;
 use \App\Http\Controllers\MarkAsReadController;
 use \App\Http\Controllers\MarkAsAllReadController;
+use \App\Http\Controllers\UserInformationController;
+use \App\Http\Controllers\GetCountryController;
+use \App\Http\Controllers\UpdateUserProfileController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,6 +45,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/user', function (Request 
 Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/countries', GetCountryController::class);
+
     Route::get('/notifications', GetNotificationController::class);
     Route::put('/notifications/{notification}', MarkAsReadController::class);
     Route::patch('/notifications/markAllAsRead', MarkAsAllReadController::class);
@@ -60,6 +66,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('/comment/{id}', DeleteCommentController::class);
     Route::post('/comment/create', CreateCommentController::class);
     Route::get('/categories',GetCategoryController::class)->name('categories');
+    Route::post('/update-profile', UpdateUserProfileController::class);
+    Route::get('/user/{user}', UserInformationController::class);
 });
 
 Route::group(['middleware' => ['web']], function () {
