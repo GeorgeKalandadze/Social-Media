@@ -64,6 +64,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::delete('/{id}', DeleteCommentController::class);
         Route::post('/create', CreateCommentController::class);
     });
+
     Route::get('/categories',GetCategoryController::class)->name('categories');
 });
 
