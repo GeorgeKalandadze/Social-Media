@@ -37,37 +37,43 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/user', function (Request 
     $user = $request->user();
     $user['roles'] = $user->getRoleNames()->toArray();
     return $user;
-});
+})->name('user.profile');
 
 Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('notifications')->group(function () {
-        Route::get('/', GetNotificationController::class);
-        Route::put('/{notification}', MarkAsReadController::class);
-        Route::patch('/markAllAsRead', MarkAsAllReadController::class);
+        Route::get('/', GetNotificationController::class)->name('notifications.index');
+        Route::put('/{notification}', MarkAsReadController::class)->name('notifications.markRead');
+        Route::patch('/markAllAsRead', MarkAsAllReadController::class)->name('notifications.markAllRead');
     });
-    Route::get('/posts', GetPostController::class);
-    Route::get('/favorites', GetFavoritePostController::class);
-    Route::post('/posts/{post}/favorite', ToggleFavoritePostController::class);
+
+    Route::get('/posts', GetPostController::class)->name('posts.index');
+    Route::get('/favorites', GetFavoritePostController::class)->name('posts.favorite');
+    Route::post('/posts/{post}/favorite', ToggleFavoritePostController::class)->name('posts.toggleFavorite');
+
     Route::prefix('post')->group(function () {
-        Route::post('/create', CreatePostController::class);
-        Route::post('/update/{id}', UpdatePostController::class);
-        Route::delete('/{id}', DeletePostController::class);
-        Route::post('/upvote/{post_id}', LikePostController::class);
+        Route::post('/create', CreatePostController::class)->name('post.create');
+        Route::post('/update/{id}', UpdatePostController::class)->name('post.update');
+        Route::delete('/{id}', DeletePostController::class)->name('post.delete');
+        Route::post('/upvote/{post_id}', LikePostController::class)->name('post.upvote');
     });
-    Route::delete('/posts/{postId}/images/{imageId}', DeletePostImageController::class)->name('delete.post.image');
+
+    Route::delete('/posts/{postId}/images/{imageId}', DeletePostImageController::class)->name('post.image.delete');
+
     Route::prefix('comment')->group(function () {
-        Route::post('/upvote/{comment_id}', LikeCommentController::class);
-        Route::get('/{post}', GetCommentController::class);
-        Route::put('/{comment}', UpdateCommentController::class);
-        Route::delete('/{id}', DeleteCommentController::class);
-        Route::post('/create', CreateCommentController::class);
+        Route::post('/upvote/{comment_id}', LikeCommentController::class)->name('comment.upvote');
+        Route::get('/{post}', GetCommentController::class)->name('comment.get');
+        Route::put('/{comment}', UpdateCommentController::class)->name('comment.update');
+        Route::delete('/{id}', DeleteCommentController::class)->name('comment.delete');
+        Route::post('/create', CreateCommentController::class)->name('comment.create');
     });
-    Route::get('/categories',GetCategoryController::class)->name('categories');
+
+    Route::get('/categories', GetCategoryController::class)->name('categories.index');
 });
 
 Route::group(['middleware' => ['web']], function () {
-    Route::get('auth/google',GoogleRedirectController::class);
-    Route::get('/auth/google/callback', CallbackGoogleController::class);
+    Route::get('auth/google', GoogleRedirectController::class)->name('auth.google.redirect');
+    Route::get('/auth/google/callback', CallbackGoogleController::class)->name('auth.google.callback');
 });
+
