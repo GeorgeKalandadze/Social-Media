@@ -1,66 +1,102 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div style="display:flex; align-items: center">
+  <h1 style="position:relative; top: -6px" >Social Media Project</h1>
+</div>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+This is a social media project where users can create, update, or delete their own posts, make comments and replies on posts, as well as like or save others' posts, among other various functionalities. This is the backend side of the application, which is written in Laravel. The application includes features such as a real-time voting system using Broadcasting and Pusher, and Google OAuth with Laravel Socialite. Additionally, users receive real-time notifications when someone likes or comments on their posts. The frontend side's GitHub repository can be found here: https://github.com/GeorgeKalandadze/Social-Media-Web-Front.git
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+#
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Authentication**: Admin and Moderator roles with specific permissions using Spatie Permissions.
+  - **API Token Authentication**: Securing API endpoints with Laravel Sanctum.
+  - **Manage Auth Functionality**: Managed with Laravel Fortify.
+- **Google OAuth**: Users can sign in with their Google accounts.
+- **Post Management**: Users can create, update, and delete their own posts, also users can like and save posts created by others,make comments and replays on posts.
+- **Real-Time Features**: Real-time vote system implemented using Laravel Broadcasting and Pusher for immediate updates and interactions.
+- **Event-Driven Architecture**: Used for decoupling complex processes. For instance, events are fired when posts are liked or commented on, and corresponding listeners handle the processing.
+- **Form Request Validation**: Enhanced form request validation using Laravel form request Classes.
+- **API Resources**: Used for transforming and formatting API responses, providing a consistent structure for the API endpoints.
+- **Seeders and Factories**:  Provide initial data for testing and development environments, Generate realistic fake data for models.
 
-## Learning Laravel
+  
+#
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Used Packages And Docs
+- [Sanctum](https://laravel.com/docs/11.x/sanctum): Securing API endpoints with Laravel Sanctum.
+- [Laravel Fortify](https://laravel.com/docs/11.x/fortify): A minimalistic authentication scaffolding for Laravel applications.
+- [Laravel Socialite](https://laravel.com/docs/11.x/socialite): A simple and fluent way to authenticate with OAuth providers in Laravel applications.
+- [Broadcasting](https://laravel.com/docs/11.x/broadcasting):  Learn about broadcasting events in your Laravel application, allowing real-time communication between the server and connected clients.
+- [Pusher Api](https://pusher.com/): A service that provides real-time communication APIs to enable seamless collaboration and interactive experiences
+- [Laravel Vote](https://packagist.org/packages/overtrue/laravel-vote): A Laravel package for implementing a voting system in applications, allowing users to vote on content such as posts or comments
+#
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Project setup
+```bash
+git clone https://github.com/GeorgeKalandadze/Social-Media-web-Backend.git
+```
+```bash
+cp .env.example .env
+```
+```bash
+composer install
+```
+```bash
+php artisan key:generate
+```
+```bash
+php artisan migrate:fresh --seed
+```
+```bash
+php artisan serve
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#
 
-## Laravel Sponsors
+### And now you should provide **.env** file all the necessary environment variables:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+**MYSQL:**
 
-### Premium Partners
+> DB_CONNECTION=mysql
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+> DB_HOST=127.0.0.1
 
-## Contributing
+> DB_PORT=3306
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+> DB_DATABASE=**\***
 
-## Code of Conduct
+> DB_USERNAME=**\***
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+> DB_PASSWORD=**\***
 
-## Security Vulnerabilities
+#
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Pusher:**
 
-## License
+> ROADCAST_DRIVER=pusher
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+> CACHE_DRIVER=file
+
+> FILESYSTEM_DISK=public
+
+> QUEUE_CONNECTION=sync
+
+> SESSION_DRIVER=file
+
+> PUSHER_APP_ID=*
+
+> PUSHER_APP_KEY=*
+
+> PUSHER_APP_SECRET=*
+
+> PUSHER_PORT=443
+
+> PUSHER_SCHEME=https
+
+> PUSHER_APP_CLUSTER=*
+
+#
+### Frontend Side Github Project URL
+https://github.com/GeorgeKalandadze/Social-Media-Web-Front
