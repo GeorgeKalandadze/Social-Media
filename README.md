@@ -10,7 +10,7 @@ This is a social media project where users can create, update, or delete their o
 
 ### Features
 
-- **Authentication**: Admin and Moderator roles with specific permissions using Spatie Permissions.
+- **Authentication**: User Authentications system.
   - **API Token Authentication**: Securing API endpoints with Laravel Sanctum.
   - **Manage Auth Functionality**: Managed with Laravel Fortify.
 - **Google OAuth**: Users can sign in with their Google accounts.
